@@ -68,7 +68,7 @@ publishing {
                         username = "$milesMavenUser"
                         password = "$milesMavenPass"
                     }
-                    url = 'https://maven.miles.sh/snapshots'
+                    url 'https://maven.miles.sh/libraries'
                 }
             }
         }
