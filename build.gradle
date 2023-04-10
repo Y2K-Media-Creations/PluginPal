@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id "io.freefair.lombok" version "8.0.1" apply true
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "io.freefair.aggregate-javadoc" version "6.5.0.3"
+    id "io.freefair.aggregate-javadoc-jar" version "6.6.3"
+}
+
+group 'sh.miles'
+version '1.0-SNAPSHOT'
+description 'A set of helper classes for working with the Spigot API'
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+jar.enabled = false
+
+subprojects {
+
+    java {
+        withJavadocJar()
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier.set('javadoc')
+        from javadoc.destinationDir
+    }
+
+    def javadocConfig = {
+        options {
+            links(
+                    'https://docs.oracle.com/en/java/javase/16/docs/api/',
+                    'https://hub.spigotmc.org/javadocs/spigot/',
+                    'https://javadoc.io/doc/org.jetbrains/annotations/19.0.0'
+            )
+            tags(
+                    "nms:a:Requires NMS"
+            )
+        }
+    }
+
+    javadoc { configure javadocConfig }
+    aggregateJavadoc { configure javadocConfig }
+
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/') }
+    }
+}
+
+dependencies {
+    implementation project(':core')
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            project.shadow.component(publication)
+            artifacts = [shadowJar, aggregateJavadocJar]
+
+            repositories {
+                maven {
+                    credentials {
+                        username = "$milesMavenUser"
+                        password = "$milesMavenPass"
+                    }
+                    url = 'https://maven.miles.sh/snapshots'
+                }
+            }
+        }
+    }
+}
+
