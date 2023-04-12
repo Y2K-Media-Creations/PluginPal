@@ -2,6 +2,9 @@ package sh.miles.pluginpal.core;
 
 import org.bukkit.Bukkit;
 
+/**
+ * Utility class for retrieving server version information
+ */
 public final class Version {
 
     private Version() {

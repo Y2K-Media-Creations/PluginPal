@@ -37,6 +37,12 @@ public final class PluginDependencyLoader {
         });
     }
 
+    /**
+     * Forceably loads a dependency
+     * 
+     * @param dependency The dependency to load
+     * 
+     */
     private void load(final PluginDependency dependency) {
 
         if (!PluginDependency.isDependencyEnabled(dependency)) {

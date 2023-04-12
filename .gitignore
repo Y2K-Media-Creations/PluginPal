@@ -11,3 +11,11 @@ target/
 .gradle
 bin/
 build/
+
+## Testing Requirements ##
+
+# Ignore resources folders
+**/src/main/resources/
+
+# Ignore TestPlugin.java's
+**/src/main/java/sh/miles/TestPlugin.java

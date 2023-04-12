@@ -9,8 +9,9 @@ group 'sh.miles.pluginpal'
 version '1.0.0-SNAPSHOT'
 description 'A set of helper classes for working with the Spigot API'
 
-compileJava.options.encoding = "UTF-8"
+compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = "UTF-8"
+java.sourceCompatibility = JavaVersion.VERSION_17
 jar.enabled = false 
 
 allprojects {
