@@ -1,4 +1,4 @@
-package sh.miles.core.start;
+package sh.miles.pluginpal.core.start;
 
 public enum LoadState {
     LOADED,

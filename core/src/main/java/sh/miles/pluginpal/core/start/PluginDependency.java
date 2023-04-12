@@ -1,4 +1,4 @@
-package sh.miles.core.start;
+package sh.miles.pluginpal.core.start;
 
 import java.util.List;
 import java.util.function.Consumer;

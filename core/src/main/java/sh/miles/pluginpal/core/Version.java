@@ -1,4 +1,4 @@
-package sh.miles.core;
+package sh.miles.pluginpal.core;
 
 import org.bukkit.Bukkit;
 
